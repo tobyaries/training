@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.css">
+</head>
+
+<body>
+    <div id='root'>
+        <tabs>
+            <tab name='Pictures' :selected='true'>
+                This is something about Pictures.
+            </tab>
+            <tab name='Music'>
+                This is something about Music.
+            </tab>
+            <tab name='Videos'>
+                This is something about Videos.
+            </tab>
+            <tab name='Document'>
+                This is something about Document.
+            </tab>
+        </tabs>
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        Vue.component('tab', {
+            props: {
+                name: { required: true },
+                selected: { default: false },
+            },
+            template: '<div v-show="isActive"><slot></slot></div>',
+            data() {
+                return {
+                    isActive: false
+                }
+            },
+            mounted() {
+                this.isActive = this.selected;
+            },
+            computed: {
+                linkTo() {
+                    return '#' + this.name.toLowerCase()
+                    }
+            }
+        });
+        Vue.component('tabs', {
+            template: `
+               <div>
+                    <div class="tabs">
+                        <ul>
+                            <li v-for="tab in tabs" :class="{'is-active': tab.isActive}">
+                                <a :href="tab.linkTo" @click="selectTab(tab)">{{ tab.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <slot></slot>
+               </div>
+            `,
+            data() {
+                return {
+                    tabs: [],
+                }
+            },
+            methods: {
+                selectTab(selectedTab) {
+                    // console.log(selectedTab)
+                    this.tabs.forEach(tab => {
+                        tab.isActive = tab.name == selectedTab.name
+                    });
+                }
+            },
+            mounted() {
+                this.tabs = this.$children
+            },
+            created() {
+
+            }
+        });
+        var app = new Vue({
+            el: '#root',
+            data: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

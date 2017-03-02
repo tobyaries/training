@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'>
+        <ul v-for="task in completedTasks">
+            <!--<li v-text='task.description' v-if='task.completed'></li>-->
+            <li v-text="task.description"></li>
+        </ul>
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                tasks: [
+                    {description: 'Go to the store', completed: true},
+                    {description: 'Finish screencast', completed: false},
+                    {description: 'Make donation', completed: false},
+                    {description: 'Clear inbox', completed: false},
+                    {description: 'Make dinner', completed: false},
+                    {description: 'Clean room', completed: true}
+                ]
+            },
+            computed: {
+                completedTasks() {
+                    return this.tasks.filter(task=>task.completed);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

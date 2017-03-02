@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'>
+        <!--{{ msg.split('').reverse().join('') }}-->
+        {{ reverseMsg }}
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                msg: 'hello world'
+            },
+            computed: {
+                reverseMsg() {
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'>
+        <ul>
+            <task>first</task>
+            <task>second</task>
+            <task>third</task>
+        </ul>
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        Vue.component('task', {
+            template: '<li><slot></slot></li>'
+        });
+        new Vue({
+            el: '#root'
+        });
+    </script>
+</body>
+
+</html>

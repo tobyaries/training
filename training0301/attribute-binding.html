@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style lang="">
+        .default-button{
+            background: #d3d3d3;
+        }
+        .active-button{
+            background: #ff0000;
+        }
+        .active{
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id='root'>
+        <!--<button v-bind:title='title'>Button</button>-->
+        <!--<button :class='bgColor' @click='changeColor'>Button</button>-->
+        <!--<button :class="{'active-button': toogleFlg}" @click='toogleColor'>Button</button>-->
+        <button :disabled='toogleFlg' @click='toogleColor'>Toogle Me</button>
+    </div>
+    <script src='./vue.js'></script>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                msg: 'hello world',
+                title: 'This title is changed.',
+                bgColor: 'default-button',
+                toogleFlg: false
+            },
+            methods: {
+                changeColor() {
+                    this.bgColor = 'active-button';
+                },
+                toogleColor() {
+                    this.toogleFlg = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
